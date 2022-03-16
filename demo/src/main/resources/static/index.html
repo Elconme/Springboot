@@ -10,10 +10,10 @@
     <script type="text/javascript">
         function validateForm() {
             try {
-                var inputValue1 = document.getElementById("input1").value;
-                var inputValue2 = document.getElementById("input2").value;
+                var inputValue1 = document.getElementById("usuario").value;
+                var inputValue2 = document.getElementById("contraseña").value;
                 const data = { user: inputValue1, password: inputValue2 };
-                const address = '/login2';
+                const address = '/login';
                 fetch(address, {
                     method: 'POST',
                     headers: {
@@ -26,7 +26,7 @@
                         console.log(data);
                         if(data.result == "OK") {
                             console.log("Authenticated");
-                            document.location.href="/home.html";
+                            document.location.href="/Info_pers.html";
                         } else {
                             alert("Credential not recognized");
                         }
@@ -40,15 +40,52 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1>Interacting with a REST API</h1>
-                <h2>Using a Web Form handled by JS</h2>
+
+<!-- Contact section-->
+<section class="bg-white py-5">
+    <div class="container px-5 my-5 px-5">
+        <a class="navbar-brand" href="./index.html">
+            <img src="./img/Iberdrola-logo.png" height="70" width="150"/>
+        </a>
+        <div class="text-center  text-success mb-5">
+            <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
+            <h2 class="fw-bolder">Área Clientes</h2>
+        </div>
+        <div style="text-align:center">
+            <a class="btn btn-outline-success btn-lg" style="margin-right:50px;" href="#sesion">Iniciar Sesión</a>
+            <a class="btn btn-outline-success btn-lg" style="margin-left:50px;" href="#registro">Registrarse</a>
+        </div>
+    </div>
+</section>
+<section class="bg-light py-5" id="sesion">
+    <div class="container px-5 my-5 px-5">
+        <div class="text-center  text-success mb-5">
+            <h4 class="mb-0">Inicia Sesión</h4>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- * * SB Forms Contact Form * *-->
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- This form is pre-integrated with SB Forms.-->
+                <!-- To make this form functional, sign up at-->
+                <!-- https://startbootstrap.com/solution/contact-forms-->
+                <!-- to get an API token!-->
                 <form method="post" action="/login2" onsubmit="return validateForm()">
-                    <input type="text" name="user" id="input1" />
-                    <input type="text" name="password" id="input2" />
-                    <input type="submit" value="Enviar">
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <label for="usuario">Usuario</label>
+                        <input class="form-control" id="usuario" type="text" placeholder="Introducir usuario..." data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="usuario:required">Se requiere el nombre de usuario.</div>
+                    </div>
+                    <!-- Contraseña input-->
+                    <div class="form-floating mb-3">
+                        <label for="contraseña">Contraseña</label>
+                        <input class="form-control" id="contraseña" type="password" placeholder="Introducir contraseña..." data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="contraseña:required">Se requiere la contraseña.</div>
+                    </div>
+                    <!-- Submit Button-->
+                    <div class="d-grid"><input type="submit" class="btn btn-success btn-md" value="Enviar"></div>
                 </form>
             </div>
         </div>

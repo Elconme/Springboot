@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+    <title>Registro</title>
+    <meta charset="utf-8">
+    <!--Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Contact section-->
+    <section class="bg-light py-5">
+        <div class="container px-5 my-5 px-5">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./img/Iberdrola-logo.png" height="70" width="150"/>
+            </a>
+            <div class="text-center mb-5">
+                <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-file-earmark-person-fill"></i></div>
+                <h2 class="fw-bolder">Datos Registro</h2>
+                <p class="lead mb-0">Es obligatorio rellenar todos los campos.</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-6">
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <!-- DNI input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="dni" type="text" placeholder="Escribir DNI o NIE..." data-sb-validations="required" />
+                            <label for="dni">DNI o NIE</label>
+                            <div class="invalid-feedback" data-sb-feedback="dni:required">El DNI es obligatorio.</div>
+                        </div>
+                        <!-- Tipo Usuario input-->
+                        <div style="text-align:center">
+                            <!-- Tipo Usuario-->
+                            <div class="btn-group btn-lg px-4 mb-5 me-sm-3">
+                                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                    Tipo Usuario
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
+                                    <li><a class="dropdown-item" href="#">Particulares y Autónomos</a></li>
+                                    <li><a class="dropdown-item" href="#">Empresa</a></li>
+                                    <li><a class="dropdown-item" href="#">Administrador de Fincas</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Email address input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="email" type="email" placeholder="nombre@ejemplo.com" data-sb-validations="required,email" />
+                            <label for="email">Email</label>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">Se requiere email.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Email inválido.</div>
+                        </div>
+                        <!-- Phone number input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                            <label for="phone">Teléfono</label>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">Número de teléfono obligatorio.</div>
+                        </div>
+                        <!-- Contraseña input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="contrasena" type="password" placeholder="Introducir contraseña..." data-sb-validations="required" />
+                            <label for="phone">Contraseña</label>
+                            <div class="invalid-feedback" data-sb-feedback="contrasena:required">Se requiere la contraseña.</div>
+                        </div>
+                        <!-- Submit success message-->
+                        <!---->
+                        <!-- This is what your users will see when the form-->
+                        <!-- has successfully submitted-->
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Se ha registrado correctamente</div>
+                            </div>
+                        </div>
+                        <!-- Submit error message-->
+                        <!---->
+                        <!-- This is what your users will see when there is-->
+                        <!-- an error submitting the form-->
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Error en el registro!</div></div>
+                        <!-- Submit Button-->
+                        <div class="d-grid"><button class="btn btn-success btn-lg" onclick="window.location.href='./Contrato.html'" id="submitButton" type="submit">Regristrarme</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>
+
