@@ -12,36 +12,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function validateForm() {
+            try {
+                var inputValue1 = document.getElementById("usuario").value;
+                var inputValue2 = document.getElementById("contraseña").value;
+                const data = { user: inputValue1, password: inputValue2 };
+                const address = '/login';
+                fetch(address, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        if(data.result == "OK") {
+                            console.log("Authenticated");
+                            console.log(data);
+                            document.getElementById("Bienvenido").innerHTML = "¡Bienvenido"+inputValue1+"!";
+                            document.location.href="/Info_pers.html";
 
-    function validateForm() {
-    try {
-    var inputValue1 = document.getElementById("input1").value;
-    var inputValue2 = document.getElementById("input2").value;
-    const data = { user: inputValue1, password: inputValue2 };
-    const address = '/login2';
-    fetch(address, {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-    console.log(data);
-    if(data.result == "OK") {
-    console.log("Authenticated");
-    document.location.href="/home.html";
-    } else {
-    alert("Credential not recognized");
-    }
-    });
+                        } else {
+                            alert("Usuario no registrado");
+                        }
+                    });
 
-    } catch (err) {
-    console.error(err.message);
-    }
-    return false;
-    }
+            } catch (err) {
+                console.error(err.message);
+            }
+            return false;
+        }
+    </script>
 
 </head>
 <body>
@@ -59,7 +63,7 @@
             <a class="btn btn-outline-success btn-lg" style="margin-right:50px;" href="#sesion">Iniciar Sesión</a>
             <a class="btn btn-outline-success btn-lg" style="margin-left:50px;" href="#registro">Registrarse</a>
         </div>
-        </div>
+    </div>
 </section>
 <section class="bg-light py-5" id="sesion">
     <div class="container px-5 my-5 px-5">
@@ -76,39 +80,19 @@
                 <!-- https://startbootstrap.com/solution/contact-forms-->
                 <!-- to get an API token!-->
                 <form method="post" action="/login2" onsubmit="return validateForm()">
-                    <!--input type="text" name="user" id="input1" />
-                    <input type="text" name="password" id="input2" /-->
                     <!-- Name input-->
+                    <label>Usuario: </label>
                     <div class="form-floating mb-3">
+                        <!--label>Usuario</label-->
                         <input class="form-control" id="usuario" type="text" placeholder="Introducir usuario..." data-sb-validations="required" />
-                        <label for="usuario">Usuario</label>
-                        <div class="invalid-feedback" data-sb-feedback="usuario:required">Se requiere el nombre de usuario.</div>
                     </div>
                     <!-- Contraseña input-->
+                    <label for="contraseña">Contraseña: </label>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="contraseña" type="password" placeholder="Introducir contraseña..." data-sb-validations="required" />
-                        <label for="contraseña">Contraseña</label>
-                        <div class="invalid-feedback" data-sb-feedback="contraseña:required">Se requiere la contraseña.</div>
                     </div>
-                    </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center
-                            <div class="fw-bolder">Ha iniciado sesión</div>
-                            </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Error iniciando sesión!</div></div>
-
-                    <input type="submit" value="Enviar">
-                    <!-- Submit Button>
-                    <div class="d-grid"><button class="btn btn-success btn-lg" onclick="window.location.href='./Info_pers.html'" id="submitButton" type="submit">Iniciar Sesión</button></div-->
+                    <!-- Submit Button-->
+                    <div class="d-grid"><input type="submit" class="btn btn-success btn-md" value="Enviar"></div>
                 </form>
             </div>
         </div>

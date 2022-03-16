@@ -19,7 +19,7 @@ public class MainController {
             path="/login",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> login2(
+    public ResponseEntity<String> login(
             @Valid @RequestBody LoginCredential2 loginParam,
             BindingResult bindingResult) {
 
@@ -27,8 +27,8 @@ public class MainController {
             return new ResponseEntity<>("{\"result\" : \"KO\"}", HttpStatus.BAD_REQUEST);
         }
 
-        if ((loginParam.user().equals("DEMO")) &&
-            (loginParam.password().equals("DEMO"))) {
+        if ((loginParam.user().equals("Elena")) &&
+            (loginParam.password().equals("1234"))) {
             return new ResponseEntity<>("{\"result\" : \"OK\"}", HttpStatus.OK);
         }
         return new ResponseEntity<>("{\"result\" : \"KO\"}", HttpStatus.UNAUTHORIZED);
