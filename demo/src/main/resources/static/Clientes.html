@@ -31,14 +31,10 @@
                         console.log(data);
                         if(data.result == "OK") {
                             console.log("Authenticated");
-                            alert("Registrado exitosamente");
+                            alert("¡Bienvenida "+document.getElementById("usuario").value+"!");
                             document.location.href="/Info_pers.html";
-                            window.location.href="/Info_pers.html";
-                            let dato = document.getElementById("S").innerHTML;
-                            console.log("dato");
-
                         } else {
-                            alert("Usuario no registrado");
+                            alert("Usuario o contraseña inválidos, para que funcione la validación introducir Usuario: Elena Contraseña: 1234");
                         }
                     });
 
@@ -50,7 +46,6 @@
     </script>
 </head>
 <body>
-
 <!-- Contact section-->
 <section class="bg-white py-5">
     <div class="container px-5 my-5 px-5">
@@ -83,16 +78,15 @@
                 <!-- to get an API token!-->
                 <form method="post" action="/login2" onsubmit="return validateForm()">
                     <!-- Name input-->
+                    <label>Usuario: </label>
                     <div class="form-floating mb-3">
-                        <label for="usuario">Usuario</label>
+                        <!--label>Usuario</label-->
                         <input class="form-control" id="usuario" type="text" placeholder="Introducir usuario..." data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="usuario:required">Se requiere el nombre de usuario.</div>
                     </div>
                     <!-- Contraseña input-->
+                    <label for="contraseña">Contraseña: </label>
                     <div class="form-floating mb-3">
-                        <label for="contraseña">Contraseña</label>
                         <input class="form-control" id="contraseña" type="password" placeholder="Introducir contraseña..." data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="contraseña:required">Se requiere la contraseña.</div>
                     </div>
                     <!-- Submit Button-->
                     <div class="d-grid"><input type="submit" class="btn btn-success btn-md" value="Enviar"></div>
@@ -101,5 +95,19 @@
         </div>
     </div>
 </section>
+<section class="bg-white" id="registro">
+    <div class="text-center text-success">
+        <h4 class="fw-bolder">¿Aún no te has registrado?</h4>
+        <p class="mb-4">
+            Regístrate ya en <em>Mi Área Cliente</em> y ten acceso a toda tu información.<br/>
+        </p>
+        <div class="d-grid row gx-5 justify-content-center"><button class="btn btn-outline-success btn-lg" onclick="window.location.href='./Registro.html'" id="submitButton" type="submit">Registrarse</button></div>
+    </div>
+</section>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

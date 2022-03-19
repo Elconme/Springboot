@@ -1,95 +1,82 @@
 <!doctype html>
 <html>
 <head>
+    <title>Iberdrola</title>
     <meta charset="utf-8">
-    <title>Hello World</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
-          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
-          crossorigin="anonymous" />
-    <script type="text/javascript">
-        function validateForm() {
-            try {
-                var inputValue1 = document.getElementById("usuario").value;
-                var inputValue2 = document.getElementById("contraseña").value;
-                const data = { user: inputValue1, password: inputValue2 };
-                const address = '/login';
-                fetch(address, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        if(data.result == "OK") {
-                            console.log("Authenticated");
-                            document.location.href="/Info_pers.html";
-                        } else {
-                            alert("Credential not recognized");
-                        }
-                    });
-
-            } catch (err) {
-                console.error(err.message);
-            }
-            return false;
-        }
-    </script>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Glyphicons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-
-<!-- Contact section-->
-<section class="bg-white py-5">
-    <div class="container px-5 my-5 px-5">
-        <a class="navbar-brand" href="./index.html">
+<!-- Responsive navbar-->
+<nav class="navbar-expand-lg navbar-white bg-white">
+    <div class="container px-5">
+        <a class="navbar-brand" href="#!">
             <img src="./img/Iberdrola-logo.png" height="70" width="150"/>
         </a>
-        <div class="text-center  text-success mb-5">
-            <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-circle"></i></div>
-            <h2 class="fw-bolder">Área Clientes</h2>
-        </div>
-        <div style="text-align:center">
-            <a class="btn btn-outline-success btn-lg" style="margin-right:50px;" href="#sesion">Iniciar Sesión</a>
-            <a class="btn btn-outline-success btn-lg" style="margin-left:50px;" href="#registro">Registrarse</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Clientes.html"><i class="bi bi-person-circle"></i> Área Clientes</a></li>
+            </ul><br/><br/><br/><br/><br/>
         </div>
     </div>
-</section>
-<section class="bg-light py-5" id="sesion">
-    <div class="container px-5 my-5 px-5">
-        <div class="text-center  text-success mb-5">
-            <h4 class="mb-0">Inicia Sesión</h4>
-        </div>
+</nav>
+<!-- Header-->
+<header class="bg-light bg-gradient py-5">
+    <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
-                <form method="post" action="/login2" onsubmit="return validateForm()">
-                    <!-- Name input-->
-                    <div class="form-floating mb-3">
-                        <label for="usuario">Usuario</label>
-                        <input class="form-control" id="usuario" type="text" placeholder="Introducir usuario..." data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="usuario:required">Se requiere el nombre de usuario.</div>
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-success mb-2">Olvídate de las subidas del precio de la luz</h1>
+
+                    <!-- Evolución precios luz por horas extraído de API mediante JS -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <!--iframe class="embed-responsive-item" style="height:250px;width:100%;border:none;" src="https://tarifaluzhora.es" title="Precio luz horas" allowfullscreen > </iframe-->
+                        <div id="chartDiv" style="width:100%; height:300px; margin:0 auto;"></div>
                     </div>
-                    <!-- Contraseña input-->
-                    <div class="form-floating mb-3">
-                        <label for="contraseña">Contraseña</label>
-                        <input class="form-control" id="contraseña" type="password" placeholder="Introducir contraseña..." data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="contraseña:required">Se requiere la contraseña.</div>
+
+                    <!-- Precio máximo luz -->
+                    <h3 id="max_luz" class="fw-bolder text-success mb-4 my-4"></h3>
+
+                    <p class="lead text-success mb-4">Pásate al Plan Siempre Estable
+                        Si no eres uno de los cerca de 20 millones de hogares con la luz a precio fijo... pásate a Iberdrola
+                    </p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-outline-light btn-lg px-4 me-sm-3" href="#features">Conocer más</a>
                     </div>
-                    <!-- Submit Button-->
-                    <div class="d-grid"><input type="submit" class="btn btn-success btn-md" value="Enviar"></div>
-                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Features section -->
+<section class="py-5 border-bottom" id="features">
+    <div class="text-center my-5">
+        <h2 class="display-5 fw-bolder text-dark mb-2">¿Qué energía necesitas?</h2>
+    </div>
+    <div class="container px-5 my-5">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-3 mb-5 mb-lg-0 text-center">
+                <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><a href="./Luz.html">
+                    <span class="bi bi-lightning"></span></a></div>
+                <h2 class="h4 fw-bolder">Luz</h2>
+            </div>
+            <div class="col-lg-3 mb-5 mb-lg-0 text-center">
+                <div class="feature bg-warning bg-gradient text-dark rounded-3 mb-3"><a href="./Gas.html">
+                    <span class="glyphicon glyphicon-fire"></span></a></div>
+                <h2 class="h4 fw-bolder">Gas</h2>
             </div>
         </div>
     </div>
 </section>
 </body>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+<script src="./index.js"></script>
 </html>
